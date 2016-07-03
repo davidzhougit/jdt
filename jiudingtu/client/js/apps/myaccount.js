@@ -1,0 +1,33 @@
+/**
+ * Created by Administrator on 2016/5/13.
+ */
+$(document).ready(function(){
+    //var user = localStorage.getItem("keyName");
+    $.getJSON("../../config/account_page_tips.json",function(data){
+        $(".gameIntegralRules").html(data.account_page_tip1);
+        $(".IntegralPurposes").html(data.account_page_tip2);
+    })
+    $.ajax({
+        type:"POST",
+        url:"/getUserinfo",
+        data:null,
+        dataType:"json",
+        success:function(data){
+            $(".username").html(data.uname);
+            $(".score").html(data.score);
+        }
+    })
+    $(".exitBtn").on("click",function(){
+        $.ajax({
+            type:"POST",
+            url:"/logout",
+            data:null,
+            dataType:"text",
+            success:function(data){
+                if(data=="ok"){
+                    window.location.href="index.html";
+                }
+            }
+        })
+    })
+})

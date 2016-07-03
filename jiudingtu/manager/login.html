@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>管理端登录</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #bce8f1;
+        }
+        .wrap{
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .pagetitle{
+            text-align: center;
+            background-color: #8fa0f1;
+            padding: 5px;
+            font-weight: 600;
+        }
+        .content{
+            position: relative;
+            margin-top: 20%;
+        }
+        .logindiv{
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            z-index: 3;
+            background-color: #f1d9c9;
+            padding: 5px;
+        }
+        .mask{
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top:0;
+            background-color: white;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <div class="content">
+        <img src="images/Desert.jpg" class="img-circle img-responsive">
+        <!--<div class="mask img-circle">&nbsp;</div>-->
+        <div class="logindiv">
+            <fieldset class="form-group">
+                <label>用户名：</label>
+                    <input type="text" name="uname" id="uname" required="true" class="form-control" placeholder="请输入用户名">
+            </fieldset>
+            <fieldset class="form-group">
+                <label>密码：</label>
+                <input type="password" name="password" id="password" required="true" class="form-control" placeholder="请输入密码">
+            </fieldset>
+            <button class="btn-primary btn-lg btn-block pull-right login">登录</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/require.js" data-main="js/manager/mlogin"></script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <title>我的账户</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/myaccount.css"/>
+    <script src="js/html5.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/apps/myaccount.js"></script>
+</head>
+<body>
+    <div class="jdtBg"></div>
+    <header class="loginHeader">
+        <a class="btnBack" href="javascript:window.history.go(-1)">
+            <i class="btnIcon"></i>
+            返回
+        </a>
+        <h1>我的账户</h1>
+    </header>
+    <section>
+        <div class="accountInfo">
+            <p class="pt-625">
+                <b>登录名：</b>
+                <em class="username"></em>
+            </p>
+            <p class="pt-625 pb-625">
+                <b>积分：</b>
+                <em class="score"></em>分
+                <a class="exitBtn" href="#">退出</a>
+            </p>
+        </div>
+        <article class="integralDescription plr-625">
+            <h1>积分说明</h1>
+            <p>游戏积分计算规则：</p>
+            <p class="gameIntegralRules"></p>
+            <p>积分用途：</p>
+            <p class="IntegralPurposes"></p>
+        </article>
+        <p class="bgGame">
+            <a class="loginBtn" href="index.html">开始游戏</a>
+        </p>
+    </section>
+</body>
+</html>

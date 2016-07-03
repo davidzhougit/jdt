@@ -1,0 +1,137 @@
+
+body{
+    position: relative;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.jdtBg{
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    background: url("../images/jdtBg.jpg") repeat;
+    position: fixed;
+    z-index: -1;
+    margin: 0 auto;
+}
+
+.loginHeader{
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+    padding: 0 .625rem;
+    background: url("../images/jdtHeaderBg.jpg") no-repeat;
+    background-size: 100% 53px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    clear: both;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack{
+    position: relative;
+    float: left;
+    width: 25%;
+    padding-left: 30px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack i{
+    width: 24px;
+    height: 18px;
+    background: url("../images/jdtIcon.png") no-repeat 0 -42px;
+    background-size: 38px 110px;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.loginHeader h1{
+    float: left;
+    width: 50%;
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+
+.accountInfo{
+    width: 100%;
+    padding: 0.625rem;
+    font-size: .875rem;
+    background-color: #ECE5C7;
+    text-shadow: 0 0 2px #ffd16e;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.accountInfo .exitBtn{
+    float: right;
+    padding-left: .625rem;
+    color: #60615E;
+    text-shadow: 0 0 2px #ffd16e;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.score{
+    color: #eb413d;
+}
+
+
+.integralDescription{
+    float: left;
+    width: 100%;
+    line-height: 1.5rem;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,.1);
+    color: #6B6B6B;
+    font-size: .875rem;
+    text-shadow: 0 0 2px #ffd16e;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.integralDescription h1{
+    text-align: center;
+    margin: .625rem 0;
+}
+
+
+.bgGame{
+    float: left;
+    width: 100%;
+    margin: .625rem 0;
+    padding: .625rem .625rem 0 .625rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.loginBtn{
+    float: left;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    margin-bottom: 16px;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    box-shadow: 0 0 2px #9C7C27;
+    border-radius: 5px;
+    background: url("../images/btnBg.jpg") center center;
+    background-size: 100% 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

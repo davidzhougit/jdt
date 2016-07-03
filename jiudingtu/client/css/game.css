@@ -1,0 +1,135 @@
+body{
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+/*-----------------------header-----------------*/
+.jdtBg{
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    background: url("../images/jdtBg.jpg") repeat;
+    position: fixed;
+    z-index: -1;
+    margin: 0 auto;
+}
+
+.header{
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+    padding: 0 .625rem;
+    background: url("../images/jdtHeaderBg.jpg") no-repeat;
+    background-size: 100% 53px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    clear: both;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack{
+    position: relative;
+    float: left;
+    width: 25%;
+    padding-left: 30px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack i{
+    width: 24px;
+    height: 18px;
+    background: url("../images/jdtIcon.png") no-repeat 0 -42px;
+    background-size: 38px 110px;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.header .help{
+    width: 25%;
+    height: 100%;
+    position: relative;
+    float: right;
+    margin-right: 10px;
+}
+.header .helpIcon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    margin: auto 0;
+    width: 37px;
+    height: 38px;
+    background: url("../images/jdtIcon.png") no-repeat 0 -70px;
+    background-size: 38px 110px;
+}
+.header .LR{
+    position: relative;
+    width: 76px;
+    padding-left: 40px;
+    font-size: 1rem;
+    float: right;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.header .LRIcon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 37px;
+    height: 38px;
+    background: url("../images/jdtIcon.png") no-repeat 0 0;
+    background-size: 38px 110px;
+}
+.header .myacc{
+    color: #ffd16e;
+}
+.gamePlay{
+    width: 100%;
+    padding: 14px 8px;
+    float: left;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.gamePlay li {
+    width: 25%;
+    float: left;
+    padding: 0 8px;
+    height: 38px;
+    line-height: 38px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.gamePlay li i{
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px #9C7C27;
+    border-radius: 5px;
+    background: url("../images/btnBg.jpg") center center;
+    background-size: 100% 48px;
+    display: inline-block;
+    width: 100%;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+}
+.jdtGameArea {
+    background: url("../images/gameBg.jpg") repeat-y center top;
+    background-size: 100%;
+    min-height: 275px;
+    width: 100%;
+    float: left;
+}

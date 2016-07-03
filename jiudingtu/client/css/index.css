@@ -1,0 +1,81 @@
+
+
+
+body{
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.5625rem;
+}
+/*-----------------------header-----------------*/
+.jdtBg{
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    background: url("../images/jdtBg.jpg") repeat;
+    position: fixed;
+    z-index: -1;
+    margin: 0 auto;
+}
+.header{
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+    padding: 0 .625rem;
+    box-sizing: border-box;
+}
+.header .LR{
+    position: relative;
+    width: 115px;
+    padding-left: 40px;
+    font-size: 1rem;
+    float: right;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.header .LRIcon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 37px;
+    height: 38px;
+    background: url("../images/jdtIcon.png") no-repeat 0 0;
+    background-size: 38px 110px;
+}
+
+
+.logo{
+    width: 100%;
+    height: 60px;
+    background: url("../images/logo.png") no-repeat center center;
+    background-size: 220px;
+}
+
+.jdtClassify{
+    width: 100%;
+    margin-top: .625rem;
+    float: left;
+}
+.jdtClassify li{
+    margin: 20px auto 0;
+    font-size: 1.125rem;
+    width: 220px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px #9c7c27;
+}
+.jdtClassify .btnStyle{
+    background: url("../images/btnBg.jpg") no-repeat;
+    background-size: 100% 48px;
+}
+.jdtClassify a{
+    display: block;
+    color: #ffd16e ;
+    text-shadow: 0 0 2px #000;
+}

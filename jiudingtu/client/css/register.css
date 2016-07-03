@@ -1,0 +1,154 @@
+
+body{
+    position: relative;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+
+/*--------------------------背景和头部----------------------------*/
+.jdtBg{
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    background: url("../images/jdtBg.jpg") repeat;
+    position: fixed;
+    z-index: -1;
+    margin: 0 auto;
+}
+
+.loginHeader{
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+    padding: 0 .625rem;
+    background: url("../images/jdtHeaderBg.jpg") no-repeat;
+    background-size: 100% 53px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    clear: both;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack{
+    position: relative;
+    float: left;
+    width: 25%;
+    padding-left: 30px;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.btnBack i{
+    width: 24px;
+    height: 18px;
+    background: url("../images/jdtIcon.png") no-repeat 0 -42px;
+    background-size: 38px 110px;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.loginHeader h1{
+    float: left;
+    width: 50%;
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+
+
+
+/*-------------------------------内容区域------------------------------------*/
+.loginArea{
+    float: left;
+    width: 100%;
+    padding: 0 1.6rem;
+    margin: 1.6rem 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.loginArea .register{
+    height: 21px;
+    line-height: 21px;
+    padding-bottom: .625rem;
+}
+.loginArea .register a{
+    color: #eb413d ;
+}
+.textInput{
+    display: block;
+    float: left;
+    border: 1px solid #552707;
+    padding: 0 8px;
+    width: 100%;
+    margin-bottom: 16px;
+    height: 48px;
+    line-height: 48px;
+    background: #ffffff;
+    outline: none;
+    font-size: 0.875rem;
+    color: #444;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.yzm{
+    width: 60%;
+    float: left;
+}
+.captchaimg{
+    float: right;
+}
+.loginBtn{
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    margin-bottom: 16px;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ffd16e;
+    text-shadow: 0 0 2px #000;
+    box-shadow: 0 0 2px #9C7C27;
+    border-radius: 5px;
+    background: url("../images/btnBg.jpg") center center;
+    background-size: 100% 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+/*邮箱格式友情提示*/
+.prompt{
+    position: absolute;
+    top: 220px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 60%;
+    height: 50px;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: .875rem;
+    background-color: rgba(57,24,8,.95);
+    text-align: center;
+    border-radius: 5px;
+}

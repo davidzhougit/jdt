@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <title>game</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/game.css"/>
+    <script src="js/html5.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/apps/game.js"></script>
+</head>
+<body>
+    <div class="jdtBg"></div>
+    <header class="header">
+        <a class="btnBack" href="javascript:window.history.go(-1)">
+            <i class="btnIcon"></i>
+            返回
+        </a>
+        <a class="LR" href="login.html">
+            <i class="LRIcon"></i>
+            <em class="myacc">登录</em>
+        </a>
+        <a href="#" class="help">
+            <i class="helpIcon"></i>
+        </a>
+    </header>
+    <section>
+        <ul class="gamePlay">
+            <li><i>重来</i></li>
+            <li><i>回退</i></li>
+            <li><i>换一首</i></li>
+            <li><i>答案</i></li>
+        </ul>
+    </section>
+    <section>
+        <div class="jdtGameArea" style="width:100% ;height: 408px">
+            <canvas width="375" height="408" id="canvas"></canvas>
+            <script type="text/javascript">
+                var canvas = document.getElementById("canvas");
+                canvas.width = $(".jdtGameArea").width();
+                /*-----三角形的边长(即X轴的一个三角形的宽度)*/
+                var x = (canvas.width-80)/5;  //  59px
+                /*-----三角形的垂直线长度--------*/
+                var y = x*Math.cos(Math.PI/6); //
+                var cct = canvas.getContext("2d");
+                /*----白线的点坐标-----*/
+                var linePointWhite = { point:[{"x1":x+40,"y1":51,"x2":x*2+40,"y2":51},{"x1":x*3+40,"y1":51,"x2":x*4+40,"y2":51},
+                    {"x1":40,"y1":y*2+51,"x2":x*5+40,"y2":y*2+51},{"x1":x+40,"y1":51,"x2":x*4+40,"y2":y*6+51},
+                    {"x1":x*4+40,"y1":51,"x2":x+40,"y2":y*6+51},{"x1":x*2+40,"y1":51,"x2":x/2+40,"y2":y*3+51},
+                    {"x1":40,"y1":y*2+51,"x2":x/2+40,"y2":y*3+51},{"x1":x*3+40,"y1":51,"x2":x*9/2+40,"y2":y*3+51},
+                    {"x1":x*9/2+40,"y1":y*3+51,"x2":x*5+40,"y2":y*2+51},{"x1":x+40,"y1":y*4+51,"x2":x*4+40,"y2":y*4+51},
+                    {"x1":x+40,"y1":y*6+51,"x2":x*2+40,"y2":y*6+51},{"x1":x*3+40,"y1":y*6+51,"x2":x*4+40,"y2":y*6+51},
+                    {"x1":x+40,"y1":y*4+51,"x2":x*2+40,"y2":y*6+51},{"x1":x*4+40,"y1":y*4+51,"x2":x*3+40,"y2":y*6+51}],color:"#f6e293"}
+                /*-------黄线的点坐标------------------*/
+                var linePointYellow = { point:[{"x1":x*5/2+40,"y1":y+51,"x2":x*3/2+40,"y2":y*3+51},{"x1":x*3/2+40,"y1":y*3+51,"x2":x*5/2+40,"y2":y*5+51},
+                    {"x1":x*5/2+40,"y1":y*5+51,"x2":x*7/2+40,"y2":y*3+51},{"x1":x*7/2+40,"y1":y*3+51,"x2":x*5/2+40,"y2":y+51}],color:"#fcb713"}
+                /*------------方块的坐标---------------*/
+                var rectPoint = { point:[{"x":(3*x/2+40)-8,"y":y+7},{"x":(7*x/2+40)-8,"y":y+7},{"x":(5*x/2+40)-8,"y":51+y-21},
+                    {"x":(3*x/2+40)-8,"y":51+2*y-21},{"x":(4*x/2+40)-8,"y":51+2*y-21},{"x":(5*x/2+40)-8,"y":51+2*y-21},
+                    {"x":(6*x/2+40)-8,"y":51+2*y-21},{"x":(7*x/2+40)-8,"y":51+2*y-21},{"x":(x/2+40)-8,"y":51+2*y+4},
+                    {"x":(4*x/2+40)-20,"y":51+2*y+4},{"x":(5*x/2+40)-8,"y":51+2*y+4},{"x":(6*x/2+40)+4,"y":51+2*y+4},
+                    {"x":(9*x/2+40)-8,"y":51+2*y+4},{"x":(4*x/2+40)-8,"y":51+2*y+20},{"x":(6*x/2+40)-8,"y":51+2*y+20},
+                    {"x":(2*x/2+40)+8,"y":51+3*y-8},{"x":(3*x/2+40)+5,"y":51+3*y-8},{"x":(3*x/2+40)+21,"y":51+3*y-8},
+                    {"x":(3*x/2+40)+37,"y":51+3*y-8},{"x":(5*x/2+40)+5,"y":51+3*y-8},{"x":(5*x/2+40)+21,"y":51+3*y-8},
+                    {"x":(5*x/2+40)+37,"y":51+3*y-8},{"x":(7*x/2+40)+5,"y":51+3*y-8},{"x":(4*x/2+40)-20,"y":51+4*y-20},
+                    {"x":(4*x/2+40)-8,"y":51+3*y+18},{"x":(5*x/2+40)-8,"y":51+4*y-20},{"x":(6*x/2+40)-8,"y":51+3*y+18},
+                    {"x":(6*x/2+40)+4,"y":51+4*y-20},{"x":(3*x/2+40)-8,"y":51+4*y+5},{"x":(4*x/2+40)-8,"y":51+4*y+5},
+                    {"x":(5*x/2+40)-8,"y":51+4*y+5},{"x":(6*x/2+40)-8,"y":51+4*y+5},{"x":(7*x/2+40)-8,"y":51+4*y+5},
+                    {"x":(5*x/2+40)-8,"y":51+5*y+5},{"x":(3*x/2+40)-8,"y":51+6*y-23},{"x":(7*x/2+40)-8,"y":51+6*y-23}],border:{"width":16,"height":16}}
+                /*----------画线-----------*/
+                var line=function(linePoint,linePointColor,lineWidth,cct){
+                    cct.beginPath();
+                    cct.moveTo(linePoint.x1,linePoint.y1);
+                    cct.lineTo(linePoint.x2,linePoint.y2);
+                    cct.strokeStyle = linePointColor;
+                    cct.lineWidth=lineWidth;
+                    cct.stroke();
+                    cct.closePath();
+                }
+                /*--------------画白线-------------------*/
+                for(var i=0;i<linePointWhite.point.length;i++){
+                    line(linePointWhite.point[i],linePointWhite.color,3,cct);
+                }
+                /*--------------画黄线--------------------*/
+                for(var i=0;i<linePointYellow.point.length;i++){
+                    line(linePointYellow.point[i],linePointYellow.color,2,cct);
+                }
+                /*---------------------画圆角块-------------------*/
+                var radius=function(cct,x, y, width, height, radius) {
+                    if (typeof radius === "undefined") { radius = 5; }
+                    cct.beginPath();
+                    cct.moveTo(x + radius, y);
+                    cct.lineTo(x + width - radius, y);
+                    cct.quadraticCurveTo(x + width, y, x + width, y + radius);
+                    cct.lineTo(x + width, y + height - radius);
+                    cct.quadraticCurveTo(x + width, y + height, x + width - radius, y+ height);
+                    cct.lineTo(x + radius, y + height);
+                    cct.quadraticCurveTo(x, y + height, x, y + height - radius);
+                    cct.lineTo(x, y + radius);
+                    cct.quadraticCurveTo(x, y, x + radius, y);
+                    cct.setLineDash([2, 2]);
+                    cct.lineWidth = 1;
+                    cct.strokeStyle = "#f6e293";
+                    cct.stroke();
+                    cct.closePath();
+                };
+                for(var i=0;i<rectPoint.point.length;i++){
+                    radius(cct,rectPoint.point[i].x,rectPoint.point[i].y,rectPoint.border.width,rectPoint.border.height,5);
+                }
+            </script>
+        </div>
+    </section>
+</body>
+</html>

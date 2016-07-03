@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>九鼎图后台管理系统</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="http://libs.useso.com/js/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link href="css/editor.css" type="text/css" rel="stylesheet"/>
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <style>
+        body{
+            background-color: #bce8f1;
+        }
+        .top{
+            height: 100px;
+            text-align: center;
+            background-color: #c9e2b3;
+            background: url("../images/gameBg.jpg") repeat-y center top;background-size:100%;;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 80px;
+            margin: 0 10px;
+            color: #fff/*#FD8802*/;
+        }
+        .left{
+            width: 200px;
+            margin: 10px;
+            float: left;
+        }
+        .left .list-group{
+            margin-bottom: 5px;
+        }
+        .main{
+            float: left;
+            width: 800px;
+            margin: 10px 0 0 0;
+        }
+        .content{
+            min-height: 600px;
+        }
+        .m5{
+            height: 5px;
+        }
+        .m10{
+            height: 10px;
+        }
+        .container{
+            display: none;
+        }
+        .actived{
+            display: block;
+        }
+        .poemList .title{
+            font-weight: 600;
+        }
+        .jiudinLayer{
+            position: absolute;
+            width:100%;
+            height:100%;
+            top: 0;
+            left:0;
+            display: none;
+            z-index: 2
+        }
+        .mask{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        .editor{
+            position: absolute;
+            width: 500px;
+            min-height: 600px;
+            margin: 0 auto;
+            top: 15%;
+            z-index: 2;
+            background-color: #ffffff;
+            padding: 10px;
+        }
+        .editor section{
+            width: 100%;
+        }
+        .jdtGameArea,.jdtGameArea2{background:url(../images/gameBg.jpg) repeat-y center top;background-size:100%;min-height:275px;width:100%;float:left;}
+        .jdtGameArea2{maring-left:5px;}
+        .fl { float: left !important; }
+        .wid{width: 100%;}
+        .gametextSelect{padding:14px 8px;list-style: none;}
+        .gametextSelect li i{display: inline-block;width:100%;font-style:normal;font-weight: normal;}
+        .yellow { color: #ffd16e !important;text-shadow:0 0 2px #000;}
+        .btnStyle{text-align: center;cursor:pointer;box-shadow:1px 1px 2px #9C7C27;border-radius:5px;background:url(../images/btnBg.jpg) center center;background-size:100% 48px;}
+        .charselectd{background:url(../images/btnSelected.jpg) no-repeat center center;text-shadow:none;color:#000 !important;}
+        .gametextSelect li{width:20%;float:left;padding:0 8px;margin-bottom:10px;height:32px;line-height:32px;}
+        .jdtBg{box-shadow:0 0 5px rgba(0,0,0,0.3);background:url(../images/jdtBg.jpg) repeat;background-size:23px;}
+        .line{
+            stroke:#f6e293;
+            stroke-width:3;
+        }
+        .line2{
+            stroke:#fcb713;
+            stroke-width:2;
+        }
+        .rect{
+            stroke: #f6e293;
+            stroke-width:1;
+            fill: transparent;
+            stroke-dasharray:2,2;
+        }
+        .rect:hover{
+            stroke: #000;
+            stroke-width:1;
+            fill: transparent;
+        }
+        .filledtext{
+            stroke:transparent;
+            stroke-width:1;
+            text-shadow: none;
+        }
+        .wrong{
+            stroke: red;
+        }
+        .closebtn{
+            right: 3px;
+            top: 3px;
+            position: absolute;
+            width: 25px;
+            height: 25px;
+        }
+        .saveAnswer{
+            right: 10px;
+            top: 496px;
+            position: absolute;
+        }
+        /****弹框样式****/
+        .pop{
+            width:100%;
+            height: 100%;
+            display: none;
+            opacity: 0.1;
+        }
+        #screen{width:100%;height:100%;position:absolute;top:0;left:0;z-index:10000;background-color:#000;opacity:0.4;filter:alpha(opacity=70);}
+        .popBox{width:65%;text-align: center; top:200px;position: absolute;z-index: 10001;left:0 !important;right:0;margin:0 auto;}
+        .popContent{background-color:rgba(57,24,8,.95);min-height:54px;padding:16px 0;border-radius:5px;text-shadow:none;font-size:14px;color:#fff;position:relative;}
+        .sureBtn,.cancelBtn{height:40px;line-height: 40px;border-radius:5px;cursor:pointer;}
+        .sureBtn{background-color:#825112;color:#fff;}
+        .cancelBtn{background-color:#d1cfcf;color:#666;}
+        .fl { float: left !important; }
+        .wid48{width:48% !important;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="top">
+        九鼎图后台管理系统
+    </div>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item active">
+                用户管理
+            </li>
+            <li class="list-group-item" data-for="modify-pass-container">
+                修改密码
+            </li>
+            <li class="list-group-item" data-for="new-user-container">
+                新增用户
+            </li>
+            <li class="list-group-item" data-for="count-userscore-container">
+                用户管理
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                诗词管理
+            </li>
+            <li class="list-group-item" data-for="add-poem-container">
+                增加诗词
+            </li>
+            <li class="list-group-item" data-for="edit-poem-container">
+                编辑维护
+            </li>
+            <li class="list-group-item" data-for="set-intropoem-container">
+                选择入门诗词
+            </li>
+            <li class="list-group-item" data-for="show-intropoem-container">
+                查询入门诗词
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                九鼎作诗
+            </li>
+            <li class="list-group-item" data-for="add-jiudin-container">
+                添加九鼎作诗文字组
+            </li>
+            <li class="list-group-item" data-for="edit-jiudin-container">
+                编辑维护
+            </li>
+            <li class="list-group-item" data-for="user-jiudin-container">
+                用户作诗查询
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                设置
+            </li>
+            <li class="list-group-item" data-for="set-intronum-container">
+                入门填空数设置
+            </li>
+            <li class="list-group-item" data-for="set-accountpageinfo-container">
+                账户页面说明信息设置
+            </li>
+            <li class="list-group-item" data-for="set-gamehelpinfo1-container">
+                入门游戏帮助信息设置
+            </li>
+            <li class="list-group-item" data-for="set-gamehelpinfo2-container">
+                游戏帮助信息设置
+            </li>
+        </ul>
+    </div>
+    <ul class="main list-group">
+        <li class="list-group-item active">增加诗词</li>
+        <li class="list-group-item content">
+            <div class="modify-pass-container container">
+                <div>
+                    <label>原密码：</label>
+                    <input type="password" name="oldpass" required="true" class="form-control oldpass" placeholder="输入原密码">
+                </div>
+                <div>
+                    <label>新密码：</label>
+                    <input type="password" name="newpass" required="true" class="form-control newpass" placeholder="输入新密码">
+                </div>
+                <div>
+                    <label>确认密码：</label>
+                    <input type="password" name="confirm" required="true" class="form-control confirm" placeholder="确认密码">
+                </div>
+                <div class="m10"></div>
+                <button class="btn-primary btn-lg btn-block modifyPass">修改</button>
+            </div>
+            <div class="new-user-container container">
+                <div>
+                    <label>用户类型：</label>
+                    <select class="usertype">
+                        <option value="0">会员</option>
+                        <option value="1" selected>管理人员</option>
+                    </select>
+                </div>
+                <div>
+                    <label>用户名：</label>
+                    <input type="text" name="uname" required="true" class="form-control uname" placeholder="输入用户名">
+                </div>
+                <div>
+                    <label>密码：</label>
+                    <input type="password" name="password" required="true" class="form-control password" placeholder="输入新密码">
+                </div>
+                <div>
+                    <label>验证码：</label>
+                    <input type="text" name="captcha" required="true" class="form-control captcha" placeholder="确认密码" style="">
+                    <img src="/captcha.png">
+                </div>
+                <div class="m10"></div>
+                <button class="btn-primary btn-lg btn-block newUser">增加</button>
+            </div>
+            <div class="add-poem-container container actived">
+                <div>
+                    <label>诗词标题：</label>
+                    <input type="text" name="title" required="true" class="form-control title" placeholder="请输入标题">
+                </div>
+                <div>
+                    <label>作者：</label>
+                    <input type="text" name="author" required="true" class="form-control author" placeholder="请输入作者">
+                </div>
+                <div>
+                    <label>诗词内容：</label>
+                    <textarea type="text" name="content" rows="10" required="true" class="form-control contents" placeholder="请输入诗词内容"></textarea>
+                </div>
+                <div class="m10"></div>
+                <button class="btn-primary btn-lg btn-block addpoem">增加</button>
+            </div>
+            <div class="set-intropoem-container container">
+                <p class="label-info">从初级诗词中选择部分诗词作为入门诗词，被设置为入门级别的诗词将不再在初级中显示。</p>
+                <ul class="list-group intropoemlist"></ul>
+            </div>
+            <div class="show-intropoem-container container">
+                <p class="label-info">从初级诗词中选择部分诗词作为入门诗词，被设置为入门级别的诗词将不再在初级中显示。</p>
+                <ul class="list-group intropoemlist"></ul>
+            </div>
+            <div class="edit-poem-container container">
+                <div class="">
+                    <input class="title" type="text" placeholder="输入诗词名称查询">
+                    <button class="btn btn-primary btn-small qrypoembytitle">查询</button>
+                    <button class="btn btn-primary btn-small qrySimppoem" type="1">初级</button>
+                    <button class="btn btn-primary btn-small qryMidpoem" type="2">中级</button>
+                    <button class="btn btn-primary btn-small qrySeniorpoem" type="3">高级</button>
+                    <button class="btn btn-primary btn-small qryunanswerpoem">显示所有未设置参考答案的诗词</button>
+                    <button class="btn btn-primary btn-small qryallpoem">显示所有诗词</button>
+                </div>
+                <ul class="list-group poemList"></ul>
+            </div>
+            <div class="edit-poemcontent-container container">
+                <div>
+                    <label>诗词标题：</label>
+                    <input type="text" name="title" required="true" class="form-control title" placeholder="请输入标题">
+                </div>
+                <div>
+                    <label>作者：</label>
+                    <input type="text" name="author" required="true" class="form-control author" placeholder="请输入作者">
+                </div>
+                <div>
+                    <label>诗词内容：</label>
+                    <textarea type="text" name="content" rows="10" required="true" class="form-control contents" placeholder="请输入诗词内容"></textarea>
+                </div>
+                <div class="m10"></div>
+                <button class="btn-primary btn-lg btn-block updatepoem">保存</button>
+            </div>
+            <div class="add-jiudin-container container">
+                <label>标题：</label>
+                <input class="form-control title" placeholder="请输入唯一的标题">
+                <label>文字组：</label>
+                <textarea class="form-control contens"  rows="10"></textarea>
+                <button class="btn btn-primary btn-small pull-right saveJiudin">保存</button>
+            </div>
+            <div class="edit-jiudin-container container">
+                <ul class="list-group jpoemlist"></ul>
+            </div>
+            <div class="user-jiudin-container container">
+                <div><select class="jiudinlist"></select></div>
+                <div style="padding: 10px;">
+                    <span class="label-info">选择诗词后，点击某个用户查看用户的作诗结果。</span>
+                </div>
+                <ul class="list-group userlist" style="width:200px;float:left;"></ul>
+                <div class="jiudinArea jdtBg" style="width:500px;float:left;">
+                    <div class="jdtGameArea2">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+
+            <div class="count-userscore-container container">
+                <input type="search" class="uname" placeholder="可输入用户名查询"><button class="btn btn-primary btn-small qryuser">查询</button>
+                <button class="btn btn-primary btn-small showalluser">显示所有用户</button>
+                <button class="btn btn-primary btn-small mailall">群发邮件</button>
+                <button class="btn btn-primary btn-small cancel hide">取消</button>
+                <ul class="list-group userlist">
+
+                </ul>
+            </div>
+            <div class="set-intronum-container container">
+                <p>
+                    <label>设置入门填写字数：</label>
+                    <input class=" title" type="text" id="intro_fillnum" placeholder="请输入入门级别填空数">
+                    <button class="btn btn-primary btn-small intro_fillnum_btn">设置</button>
+                </p>
+            </div>
+            <div class="mail-touser-container container">
+                <label>发送给：</label>
+                <input type="text" class="form-control mailto">
+                <label>标题：</label>
+                <input type="text" class="form-control subject" required="true">
+                <label>内容：</label>
+                <div class="contents" required="true"></div>
+                <button class="btn btn-primary btn-small pull-right mailbtn">发送</button>
+            </div>
+            <div class="mail-user-success container">
+                <div class="success-title">
+                    <div class="success-icon" style="width: 100px;height:100px;margin:0 auto;"></div>
+                </div>
+                <span class="">邮件《<i class="mailsub"></i>》发送成功。</span>
+            </div>
+            <div class="set-accountpageinfo-container container">
+                <label>游戏积分计算规则：</label>
+                <input type="text" class="form-control p1">
+                <label>积分用途：</label>
+                <input type="text" class="form-control p2">
+                <button class="btn-primary btn-lg btn-block saveset">保存</button>
+            </div>
+            <div class="set-gamehelpinfo1-container container">
+                <label>段落1：</label>
+                <input type="text" class="form-control p1">
+                <label>段落2：</label>
+                <input type="text" class="form-control p2">
+                <label>段落3：</label>
+                <input type="text" class="form-control p3">
+                <button class="btn-primary btn-lg btn-block saveset">保存</button>
+            </div>
+            <div class="set-gamehelpinfo2-container container">
+                <label>段落1：</label>
+                <input type="text" class="form-control p1">
+                <label>段落2：</label>
+                <input type="text" class="form-control p2">
+                <label>段落3：</label>
+                <input type="text" class="form-control p3">
+                <button class="btn-primary btn-lg btn-block saveset">保存</button>
+            </div>
+        </li>
+    </ul>
+    <div class="jiudinLayer">
+        <div class="mask"></div>
+        <div class="editor jdtBg">
+            <button class="btn btn-primary btn-small saveAnswer">保存答案</button>
+            <img src="../images/close.jpg" class="closebtn" onclick="$('.jiudinLayer').hide();">
+            <section>
+                <div class="jdtGameArea">
+                    &nbsp;
+                </div>
+            </section>
+            <section>
+                <ul class="fl wid gametextSelect">
+                    &nbsp;
+                </ul>
+        </div>
+    </div>
+    <!--<div class="addScore" style="width: 300px;height: 300px;position: fixed; top: 30%; left: 40%;">-->
+
+    <!--</div>-->
+</div>
+</body>
+</html>
+<script src="js/require.js" data-main="js/manager/manager"></script>
+<script src="js/editor.js"></script>

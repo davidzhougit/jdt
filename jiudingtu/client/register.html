@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/register.css"/>
+    <script src="js/html5.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/apps/register.js"></script>
+</head>
+<body>
+<div class="jdtBg"></div>
+<header class="loginHeader">
+    <a class="btnBack" href="javascript:window.history.go(-1)">
+        <i class="btnIcon"></i>
+        返回
+    </a>
+    <h1>用户注册</h1>
+</header>
+<section class="loginArea">
+    <form action="" method="post">
+        <fieldset>
+            <input id="username" class="textInput" placeholder="请输入邮箱注册" type="text"/>
+            <input id="password" class="textInput" placeholder="密码输入6-12位数字或字母" type="password"/>
+            <p>
+                <input type="text" class="textInput yzm" placeholder="验证码"/>
+                <img class="captchaimg" src="/captcha.png" alt="" title=""/>
+            </p>
+            <input class="loginBtn" type="button" name="login" value="注册"/>
+        </fieldset>
+    </form>
+</section>
+</body>
+</html>
